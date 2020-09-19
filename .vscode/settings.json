@@ -48,7 +48,7 @@
     "setup.py": false,
     "README.rst": false,
     "README.md": false,
-    "pyproject.toml": true,
+    "pyproject.toml": false,
     "CHANGELOG.md": false,
     ".pre-commit-config.yaml": false,
     "README.d": false,

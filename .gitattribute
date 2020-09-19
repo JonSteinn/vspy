@@ -9,6 +9,7 @@
 *.md            text    eol=lf
 *.rst           text    eol=lf
 *.yml           text    eol=lf
+*.yaml          text    eol=lf
 *.toml          text    eol=lf
 *.lock          text    eol=lf
 *.ini           text    eol=lf
