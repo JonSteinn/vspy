@@ -1,0 +1,58 @@
+{
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "[python]": {
+    "editor.rulers": [
+      88
+    ],
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    ".pytest_cache/": true,
+    ".venv/": true,
+    ".mypy_cache": true,
+    "**.egg-info": true,
+    "**/__pycache__": true,
+    "dist/": true,
+    ".github/": false,
+    ".vscode/": false,
+    "LICENSE": false,
+    "MANIFEST.in": false,
+    ".gitignore": false,
+    ".gitattribute": false,
+    ".flake8": false,
+    ".pylintrc": false,
+    "mypy.ini": false,
+    ".editorconfig": false,
+    ".travis.yml": false,
+    ".isort.cfg": false,
+    "tox.ini": false,
+    "setup.py": false,
+    "README.rst": false,
+    "README.md": false,
+    "pyproject.toml": true,
+    "CHANGELOG.md": false,
+    ".pre-commit-config.yaml": false,
+    "README.d": false,
+    "docs": false,
+  },
+  "restructuredtext.confPath": "",
+}

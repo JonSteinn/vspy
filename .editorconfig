@@ -1,0 +1,28 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+end_of_line = lf
+charset = utf-8
+
+[*.py]
+max_line_length = 88
+
+[*.{json,yml,html,css}]
+indent_size = 2
+
+[**.min.js]
+indent_style = ignore
+insert_final_newline = ignore
+
+[*.{md,rst}]
+trim_trailing_whitespace = false
+
+[*.{bat,ps1,sln,vcxproj*,props,proj}]
+indent_style = tab
+
+[Makefile]
+indent_style = tab
