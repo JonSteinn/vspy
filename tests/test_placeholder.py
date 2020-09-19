@@ -1,2 +1,5 @@
+from name import __version__
+
+
 def test_placeholder():
-    assert True
+    assert __version__ == "0.0.1"
