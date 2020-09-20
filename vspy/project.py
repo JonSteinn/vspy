@@ -268,7 +268,6 @@ def _create_tox(info: Info) -> None:
         f.write("\n")
         f.write("[testenv:mypy]\n")
         f.write("description = run mypy (static type checker)\n")
-        f.write("description = run mypy (static type checker)\n")
         f.write("basepython = {[default]basepython}\n")
         f.write("deps =\n")
         f.write(f"    mypy=={info.mypy}\n")

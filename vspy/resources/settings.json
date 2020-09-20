@@ -36,7 +36,7 @@
     "docs": true,
     "Makefile": true,
     ".github/": true,
-    ".vscode/": true,
+    ".vscode/": false,
     "LICENSE": true,
     "MANIFEST.in": true,
     ".gitignore": true,
