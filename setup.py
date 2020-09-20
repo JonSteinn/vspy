@@ -9,7 +9,7 @@ def read(fname):
 
 
 def get_version():
-    with open("vspy/__init__.py", encoding="utf8") as init_file:
+    with open("vspy/__init__.py", encoding="utf-8") as init_file:
         for line in init_file.readlines():
             if line.startswith("__version__"):
                 return line.split(" = ")[1].rstrip()[1:-1]

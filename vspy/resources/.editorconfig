@@ -20,6 +20,7 @@ insert_final_newline = ignore
 
 [*.{md,rst}]
 trim_trailing_whitespace = false
+insert_final_newline = false
 
 [*.{bat,ps1,sln,vcxproj*,props,proj}]
 indent_style = tab
