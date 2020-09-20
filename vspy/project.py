@@ -172,7 +172,7 @@ def _create_setup(info: Info) -> None:
         f.write(
             (
                 f'    with open("{info.project}/__init__.py", '
-                'encoding="utf8") as init_file:\n'
+                'encoding="utf-8") as init_file:\n'
             )
         )
         f.write("        for line in init_file.readlines():\n")
