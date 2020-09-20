@@ -1,2 +1,2 @@
-graft resources
+graft vspy/resources
 include vspy/py.typed

@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 
-_ROOT = Path(__file__).parent.parent.joinpath("resources")
+_ROOT = Path(__file__).parent.joinpath("resources")
 
 
 def copy_file(fname: str, path: Path) -> None:
