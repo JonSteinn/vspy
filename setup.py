@@ -9,7 +9,7 @@ def read(fname):
 
 
 def get_version():
-    with open("name/__init__.py", encoding="utf8") as init_file:
+    with open("vspy/__init__.py", encoding="utf8") as init_file:
         for line in init_file.readlines():
             if line.startswith("__version__"):
                 return line.split(" = ")[1].rstrip()[1:-1]
@@ -17,21 +17,23 @@ def get_version():
 
 
 setup(
-    name="name",
+    name="vspy",
     version=get_version(),
     author="Jon Steinn Eliasson",
     author_email="jonsteinn@gmail.com",
-    description="DESCRIPTION",
+    description="Create a vs code python project template",
     license="GPLv3",
-    keywords=("KEYWORD"),
-    url="https://github.com/repo",
+    keywords=("vscode python project-template"),
+    url="https://github.com/JonSteinn/vspy",
     project_urls={
-        "Source": "https://github.com/repo",
-        "Tracker": "https://github.com/repo/issues",
+        "Source": "https://github.com/JonSteinn/vspy",
+        "Tracker": "https://github.com/JonSteinn/vspy/issues",
     },
     packages=find_packages(),
     long_description=read("README.rst"),
-    install_requires=[],
+    install_requires=[
+        "requests==2.24.0",
+    ],
     python_requires=">=3.7",
     include_package_data=True,
     classifiers=[
@@ -40,4 +42,5 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
+    entry_points={"console_scripts": ["vspy=vspy.main:main"]},
 )

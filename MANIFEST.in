@@ -1,0 +1,2 @@
+graft resources
+include vspy/py.typed

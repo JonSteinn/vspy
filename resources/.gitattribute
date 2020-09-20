@@ -1,0 +1,52 @@
+* text=auto
+
+# LF ending text
+*.sh            text    eol=lf
+*.py            text    eol=lf
+*.json          text    eol=lf
+*.txt           text    eol=lf
+*.xml           text    eol=lf
+*.md            text    eol=lf
+*.rst           text    eol=lf
+*.yml           text    eol=lf
+*.yaml          text    eol=lf
+*.toml          text    eol=lf
+*.lock          text    eol=lf
+*.ini           text    eol=lf
+*.in            text    eol=lf
+*.cfg           text    eol=lf
+LICENSE         text    eol=lf
+.editorconfig   text    eol=lf
+.gitignore      text    eol=lf
+.gitattribute   text    eol=lf
+.flake8         text    eol=lf
+.pylintrc       text    eol=lf
+
+# CRLF ending text
+*.bat           text    eol=crlf
+*.ps1           text    eol=crlf
+*.sln           text    eol=crlf
+*.vcxproj*      text    eol=crlf
+*.props         text    eol=crlf
+*.proj          text    eol=crlf
+Makefile        text    eol=crlf
+
+# Binary
+*.aif binary
+*.aifc binary
+*.aiff binary
+*.au binary
+*.bmp binary
+*.exe binary
+*.icns binary
+*.gif binary
+*.ico binary
+*.jpg binary
+*.pck binary
+*.png binary
+*.psd binary
+*.tar binary
+*.wav binary
+*.whl binary
+*.zip binary
+*.db binary
