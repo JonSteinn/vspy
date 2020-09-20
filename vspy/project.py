@@ -139,9 +139,15 @@ def _create_pyprojecttoml() -> None:
 
 def _create_readme(name: str) -> None:
     with Path.cwd().joinpath("README.rst").open("w") as f:
-        f.write(f"{'#' * len(name)}\n")
+        f.write(f"{'*' * len(name)}\n")
         f.write(f"{name}\n")
-        f.write(f"{'#' * len(name)}\n")
+        f.write(f"{'*' * len(name)}\n")
+        f.write("\n")
+        f.write("subtitle\n")
+        f.write("########\n")
+        f.write("\n")
+        f.write("subsubtitle\n")
+        f.write("**********************\n")
 
 
 def _create_reqdev(dev_deps: Iterator[Tuple[str, str]]) -> None:
@@ -197,6 +203,7 @@ def _create_setup(info: Info) -> None:
         f.write(f'        "Tracker": "{info.repository}/issues",\n')
         f.write("    },\n")
         f.write("    packages=find_packages(),\n")
+        f.write('    long_description_content_type="text/x-rst",\n')
         f.write('    long_description=read("README.rst"),\n')
         f.write("    install_requires=[],\n")
         f.write('    python_requires=">=3.7",\n')
@@ -260,7 +267,6 @@ def _create_tox(info: Info) -> None:
         f.write(f"commands = pylint {info.project}\n")
         f.write("\n")
         f.write("[testenv:mypy]\n")
-        f.write("description = run mypy (static type checker)\n")
         f.write("description = run mypy (static type checker)\n")
         f.write("basepython = {[default]basepython}\n")
         f.write("deps =\n")

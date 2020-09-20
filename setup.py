@@ -30,6 +30,7 @@ setup(
         "Tracker": "https://github.com/JonSteinn/vspy/issues",
     },
     packages=find_packages(),
+    long_description_content_type="text/x-rst",
     long_description=read("README.rst"),
     install_requires=[
         "requests==2.24.0",
