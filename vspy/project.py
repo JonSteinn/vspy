@@ -203,7 +203,7 @@ def _create_setup(info: Info) -> None:
         f.write(f'        "Tracker": "{info.repository}/issues",\n')
         f.write("    },\n")
         f.write("    packages=find_packages(),\n")
-        f.write('    long_description_content_type="text/x-rst; charset=utf-8",\n')
+        f.write('    long_description_content_type="text/x-rst",\n')
         f.write('    long_description=read("README.rst"),\n')
         f.write("    install_requires=[],\n")
         f.write('    python_requires=">=3.7",\n')
