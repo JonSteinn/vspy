@@ -1,4 +1,4 @@
-from name import __version__
+from vspy import __version__
 
 
 def test_placeholder():
