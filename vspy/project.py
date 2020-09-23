@@ -44,7 +44,7 @@ def _create_tests(name: str) -> None:
     test_dir.mkdir(exist_ok=True)
     test_dir.joinpath("__init__.py").touch()
     with test_dir.joinpath("test_placeholder.py").open("w") as f:
-        f.write(f"from {name} import __version__\n\n\ndef test_placeholder():")
+        f.write(f"from {name} import __version__\n\n\ndef test_placeholder():\n")
         f.write('    assert __version__ == "0.0.1"\n')
 
 
