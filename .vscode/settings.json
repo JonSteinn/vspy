@@ -3,7 +3,6 @@
     "tests"
   ],
   "python.testing.unittestEnabled": false,
-  "python.testing.nosetestsEnabled": false,
   "python.testing.pytestEnabled": true,
   "python.linting.mypyEnabled": true,
   "python.linting.pylintEnabled": true,
@@ -50,9 +49,10 @@
     "setup.py": false,
     "README.rst": false,
     "README.md": false,
+    "requirements.txt": false,
+    "requirements-dev.txt": false,
     "pyproject.toml": false,
     "CHANGELOG.md": false,
     ".pre-commit-config.yaml": false,
-  },
-  "restructuredtext.confPath": "",
+  }
 }

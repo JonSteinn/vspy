@@ -1,0 +1,9 @@
+pytest=={{dependencies['pytest']}}
+pytest-timeout=={{dependencies['pytest-timeout']}}
+pylint=={{dependencies['pylint']}}
+flake8=={{dependencies['flake8']}}
+flake8-isort=={{dependencies['flake8-isort']}}
+flake8-bugbear=={{dependencies['flake8-bugbear']}}
+mypy=={{dependencies['mypy']}}
+black=={{dependencies['black']}}
+tox=={{dependencies['tox']}}

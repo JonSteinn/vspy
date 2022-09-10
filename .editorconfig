@@ -22,7 +22,7 @@ insert_final_newline = ignore
 trim_trailing_whitespace = false
 insert_final_newline = false
 
-[*.{bat,ps1,sln,vcxproj*,props,proj}]
+[*.{bat,ps1}]
 indent_style = tab
 
 [Makefile]

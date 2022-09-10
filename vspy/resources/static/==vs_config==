@@ -3,7 +3,6 @@
     "tests"
   ],
   "python.testing.unittestEnabled": false,
-  "python.testing.nosetestsEnabled": false,
   "python.testing.pytestEnabled": true,
   "python.linting.mypyEnabled": true,
   "python.linting.pylintEnabled": true,
@@ -34,12 +33,12 @@
     "dist/": true,
     "README.d": true,
     "docs": true,
-    "Makefile": true,
     ".github/": true,
-    ".vscode/": false,
+    ".vscode/": true,
     "LICENSE": true,
     "MANIFEST.in": true,
     ".gitignore": true,
+    ".coveragerc": true,
     ".gitattribute": true,
     ".flake8": true,
     ".pylintrc": true,
@@ -51,9 +50,10 @@
     "setup.py": true,
     "README.rst": true,
     "README.md": true,
+    "requirements.txt": true,
+    "requirements-dev.txt": true,
     "pyproject.toml": true,
     "CHANGELOG.md": true,
     ".pre-commit-config.yaml": true
-  },
-  "restructuredtext.confPath": ""
+  }
 }
