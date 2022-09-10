@@ -2,8 +2,4 @@
 vspy
 ****
 
-subtitle
-########
-
-subsubtitle
-**********************
+Personal python project template creator.
