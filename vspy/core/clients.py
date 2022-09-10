@@ -1,6 +1,6 @@
 import abc
 import asyncio
-from typing import Dict, Iterable, List, Optional, Protocol, Tuple
+from typing import Awaitable, Dict, Iterable, List, Optional, Protocol, Tuple
 
 import httpx
 from bs4 import BeautifulSoup
@@ -56,7 +56,7 @@ class PyPiClient:
 
     def get_version_tasks(
         self, packages: Iterable[str]
-    ) -> Iterable[asyncio.Task[Tuple[str, str]]]:
+    ) -> Iterable[Awaitable[Tuple[str, str]]]:
         """Create tasks for fetching versions for all packages."""
         return (asyncio.create_task(self.get_version(package)) for package in packages)
 
@@ -80,7 +80,7 @@ class PythonVersionClient:
             if span.text and not span.text.startswith("2")
         ]
 
-    def active_python3_version_task(self) -> asyncio.Task[List[str]]:
+    def active_python3_version_task(self) -> Awaitable[List[str]]:
         """A task wrapper for `active_python3_version`."""
         return asyncio.create_task(self.active_python3_version())
 
