@@ -34,7 +34,7 @@
     "README.d": true,
     "docs": true,
     ".github/": true,
-    ".vscode/": true,
+    ".vscode/": false,
     "LICENSE": true,
     "MANIFEST.in": true,
     ".gitignore": true,
