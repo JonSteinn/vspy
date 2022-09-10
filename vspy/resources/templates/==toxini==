@@ -53,4 +53,4 @@ description = check that comply with autoformating
 basepython = {[default]basepython}
 deps =
     black=={{dependencies['black']}}
-commands = black --check --diff
+commands = black --check --diff .
