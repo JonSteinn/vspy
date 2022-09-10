@@ -96,7 +96,7 @@ class Project:
             self._args,
         )
         yield FileWriteJob(
-            _static("==changelog=="), self._target_root.joinpath("Changelog.md")
+            _static("==changelog=="), self._target_root.joinpath("CHANGELOG.md")
         )
         yield FileWriteJob(
             _template("==coveragerc=="),
@@ -108,7 +108,7 @@ class Project:
             _static("==gitignore=="), self._target_root.joinpath(".gitignore")
         )
         yield FileWriteJob(
-            _static("==gitattributes=="), self._target_root.joinpath(".gitttribute")
+            _static("==gitattributes=="), self._target_root.joinpath(".gitattribute")
         )
         yield FileWriteJob(
             _template("==isort=="),
