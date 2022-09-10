@@ -6,7 +6,7 @@ from typing import Dict, List, Optional, Union
 import aiofiles
 from jinja2 import BaseLoader, Environment
 
-_env = Environment(loader=BaseLoader(), enable_async=True)
+_env = Environment(loader=BaseLoader(), enable_async=True, keep_trailing_newline=True)
 
 _ROOT_DIR = pathlib.Path(__file__).parent.parent.parent
 
