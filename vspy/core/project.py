@@ -60,7 +60,7 @@ class Project:
             "author": args.author,
             "description": args.description,
             "email": args.email,
-            "keywords": " ".join(args.keywords.join(",")),
+            "keywords": args.keywords,
             "name": args.name,
             "repository": args.repository,
         }
