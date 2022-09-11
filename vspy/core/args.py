@@ -155,8 +155,7 @@ class Arguments:
     @staticmethod
     def _prompt(msg: Optional[str]) -> str:
         """Promt message and read input."""
-        if msg:
-            print(f"{msg}:", end=" ", flush=True)
+        print(f"{msg}:", end=" ", flush=True)
         return input().strip()
 
     @staticmethod

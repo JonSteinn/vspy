@@ -19,6 +19,23 @@ class MockInput:
         sys.stdin = self._original_sys_in
 
 
+class MockOutput:
+    def __init__(self) -> None:
+        self._original_sys_out = sys.stdout
+        self._io = StringIO()
+
+    @property
+    def input(self) -> str:
+        return self._io.getvalue()
+
+    def __enter__(self):
+        sys.stdout = self._io
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        sys.stdout = self._original_sys_out
+
+
 class MockArgs:
     @classmethod
     def from_iterable(cls, inputs: Iterable[str]) -> "MockArgs":

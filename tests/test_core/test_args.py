@@ -1,4 +1,4 @@
-from tests.testutils.mocks import MockArgs, MockInput
+from tests.testutils.mocks import MockArgs, MockInput, MockOutput
 from vspy.core.args import Arguments
 
 
@@ -81,3 +81,15 @@ def test_arguments_default_and_prompt():
             assert args.name == "project_name"
             assert args.repository == "my_repo"
             assert args.target == "."
+
+
+def test_arguments_prompt_msg():
+    with MockOutput() as mock_out, MockArgs(), MockInput(
+        "project_name", "my_description", "my_repo", "me", "my_mail", "a b c d"
+    ):
+        _ = Arguments.parse()
+
+        assert (
+            mock_out.input
+            == "Enter project name: Remaining fields can be empty\nEnter project description: Enter repository: Enter author: Enter email: Enter keywords: "
+        )

@@ -47,6 +47,7 @@
     "tox.ini": true,
     "setup.py": true,
     "README.rst": true,
+    ".coverage": true,
     "README.md": true,
     "requirements.txt": true,
     "requirements-dev.txt": true,

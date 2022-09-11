@@ -43,6 +43,7 @@
     ".flake8": true,
     ".pylintrc": true,
     "mypy.ini": true,
+    ".coverage": true,
     ".editorconfig": true,
     ".travis.yml": true,
     ".isort.cfg": true,
