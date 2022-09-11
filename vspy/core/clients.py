@@ -21,10 +21,8 @@ class Client(Protocol):
 class AsyncClient(Client):
     """Async client to make multiple requests."""
 
-    _CLIENT = httpx.AsyncClient()
-
-    def __init__(self, http_client: Optional[httpx.AsyncClient] = None) -> None:
-        self._client = http_client or AsyncClient._CLIENT
+    def __init__(self) -> None:
+        self._client = httpx.AsyncClient()
 
     async def _get(self, url: str) -> httpx.Response:
         res = await self._client.get(url)
@@ -39,13 +37,10 @@ class AsyncClient(Client):
         return (await self._get(url)).text
 
 
-_defaultClient = AsyncClient()
-
-
 class PyPiClient:
     """A client that fetched PyPi package versions."""
 
-    def __init__(self, client: Client = _defaultClient) -> None:
+    def __init__(self, client: Client) -> None:
         self._client = client
 
     async def get_version(self, package: str) -> Tuple[str, str]:
@@ -64,7 +59,7 @@ class PyPiClient:
 class PythonVersionClient:
     """Client for fetching active python versions."""
 
-    def __init__(self, client: Client = _defaultClient) -> None:
+    def __init__(self, client: Client) -> None:
         self._client = client
 
     async def active_python3_version(self) -> List[str]:
@@ -86,9 +81,11 @@ class PythonVersionClient:
 
 
 async def fetch_all_requests_data(
-    packages: Iterable[str], client: Client = _defaultClient
+    packages: Iterable[str], client: Optional[Client] = None
 ) -> Tuple[Dict[str, str], List[str]]:
     """Perform all the client calls."""
+    if not client:
+        client = AsyncClient()
     pypi_cli = PyPiClient(client)
     py_cli = PythonVersionClient(client)
     res = await asyncio.gather(
