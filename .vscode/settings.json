@@ -44,7 +44,7 @@
     ".editorconfig": true,
     ".travis.yml": true,
     ".isort.cfg": true,
-    "tox.ini": false,
+    "tox.ini": true,
     "setup.py": true,
     "README.rst": true,
     ".coverage": true,

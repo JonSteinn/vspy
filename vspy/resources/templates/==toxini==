@@ -32,7 +32,7 @@ deps =
     flake8-isort=={{dependencies['flake8-isort']}}
     flake8-bugbear=={{dependencies['flake8-bugbear']}}
 commands =
-    flake8 --isort-show-traceback {{name}} tests setup.py
+    flake8 --isort-show-traceback {{name}}
 
 [testenv:pylint]
 description = run pylint (static code analysis)
