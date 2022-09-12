@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from enum import IntEnum
 from typing import Callable, Dict, List, Optional, Union
 
-ArgMap = Dict[str, Union[str, bool]]
+from vspy.core.type_hints import ArgMap
 
 
 class ArgType(IntEnum):

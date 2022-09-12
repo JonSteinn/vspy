@@ -4,16 +4,12 @@ import shutil
 import warnings
 from asyncio.proactor_events import _ProactorBasePipeTransport
 from functools import wraps
-from typing import TYPE_CHECKING, Callable
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from asyncio.proactor_events import _WarnCallbackProtocol
 
-    from mypy_extensions import DefaultArg
-
-    DelType = Callable[
-        [_ProactorBasePipeTransport, DefaultArg("_WarnCallbackProtocol")], None
-    ]
+    from vspy.core.type_hints import ProactorDelType
 
 
 def silence_event_loop_closed() -> None:
@@ -22,7 +18,7 @@ def silence_event_loop_closed() -> None:
     def _do_nothing(_self: _ProactorBasePipeTransport) -> None:
         pass
 
-    def _silence_event_loop_closed(func: "DelType") -> "DelType":
+    def _silence_event_loop_closed(func: "ProactorDelType") -> "ProactorDelType":
         @wraps(func)
         def wrapper(
             self: _ProactorBasePipeTransport,
@@ -37,7 +33,7 @@ def silence_event_loop_closed() -> None:
 
         return wrapper
 
-    def _wrapped() -> "DelType":
+    def _wrapped() -> "ProactorDelType":
         return _silence_event_loop_closed(_ProactorBasePipeTransport.__del__)
 
     _ProactorBasePipeTransport.__del__ = _wrapped()  # type: ignore
@@ -56,10 +52,9 @@ def is_empty_folder(path: str) -> bool:
         return any(iterator)
 
 
-def clean_dir(path: str) -> None:
+def clean_dir(path: pathlib.Path) -> None:
     """Remove all children of a given directory."""
-    root = pathlib.Path(path)
-    for name in root.iterdir():
+    for name in path.iterdir():
         if name.is_file():
             name.unlink()
         elif name.is_dir():
