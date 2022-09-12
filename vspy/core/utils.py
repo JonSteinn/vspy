@@ -7,9 +7,7 @@ from functools import wraps
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from asyncio.proactor_events import _WarnCallbackProtocol
-
-    from vspy.core.type_hints import ProactorDelType
+    from vspy.core.type_hints import ProactorDelType, WarnCallback
 
 
 def silence_event_loop_closed() -> None:
@@ -22,7 +20,7 @@ def silence_event_loop_closed() -> None:
         @wraps(func)
         def wrapper(
             self: _ProactorBasePipeTransport,
-            _warn: "_WarnCallbackProtocol" = warnings.warn,
+            _warn: "WarnCallback" = warnings.warn,
         ) -> None:
             try:
                 return func(self, _warn)

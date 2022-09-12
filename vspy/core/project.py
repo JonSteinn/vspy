@@ -1,10 +1,12 @@
 import pathlib
-from typing import Dict, Iterable, List, Tuple, Union
+from typing import TYPE_CHECKING, Dict, Iterable, List, Tuple, Union
 
 from vspy.core.args import Arguments
 from vspy.core.clients import fetch_all_requests_data
 from vspy.core.file_io import FileWriteJob, process_file_write_jobs
-from vspy.core.type_hints import TemplateArgs
+
+if TYPE_CHECKING:
+    from vspy.core.type_hints import TemplateArgs
 
 
 class Project:
@@ -13,7 +15,7 @@ class Project:
     def __init__(self, args: Arguments) -> None:
         self._versions: List[str] = []
         self._dependencies: Dict[str, str] = {}
-        self._args: TemplateArgs = self._args_from_input(args)
+        self._args: "TemplateArgs" = self._args_from_input(args)
         self._target_root = pathlib.Path(args.target)
 
     async def create_project(self, template_jobs: Iterable[FileWriteJob]) -> None:

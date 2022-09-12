@@ -1,9 +1,10 @@
 import argparse
 from dataclasses import dataclass
 from enum import IntEnum
-from typing import Callable, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Callable, Dict, List, Optional, Union
 
-from vspy.core.type_hints import ArgMap
+if TYPE_CHECKING:
+    from vspy.core.type_hints import ArgMap
 
 
 class ArgType(IntEnum):
@@ -55,14 +56,14 @@ class Arguments:
     def parse(cls, sys_args: Optional[List[str]] = None) -> "Arguments":
         """Parse command line arguments into a data class."""
         parser = Arguments._get_parser()
-        args: ArgMap = vars(parser.parse_args(args=sys_args))
+        args: "ArgMap" = vars(parser.parse_args(args=sys_args))
         keywords = args.get("keywords", "")
         if keywords:
             assert isinstance(keywords, str)
             args["keywords"] = " ".join(keywords.split(","))
         return cls(args)
 
-    def __init__(self, args: ArgMap) -> None:
+    def __init__(self, args: "ArgMap") -> None:
         self._str_args: Dict[str, str] = {}
         self._bool_args: Dict[str, bool] = {}
         self._populate(args)
@@ -130,7 +131,7 @@ class Arguments:
             arg_validation is None or arg_validation(self._str_args[arg_key])
         )
 
-    def _populate(self, args: ArgMap) -> None:
+    def _populate(self, args: "ArgMap") -> None:
         for key, val in args.items():
             self._add(key, val)
 

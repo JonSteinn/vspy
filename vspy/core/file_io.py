@@ -2,11 +2,13 @@ import asyncio
 import json
 import pathlib
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 import aiofiles
 from jinja2 import BaseLoader, Environment
 
-from vspy.core.type_hints import TemplateArgs
+if TYPE_CHECKING:
+    from vspy.core.type_hints import TemplateArgs
 
 _env = Environment(loader=BaseLoader(), enable_async=True, keep_trailing_newline=True)
 
@@ -42,12 +44,12 @@ async def read_json_file(file: pathlib.Path) -> dict:
     return json_dict
 
 
-async def template_from_string(string: str, variables: TemplateArgs) -> str:
+async def template_from_string(string: str, variables: "TemplateArgs") -> str:
     """Jinja2 wrapper for string templating."""
     return await _env.from_string(string).render_async(**variables)
 
 
-async def process_file_write_job(job: FileWriteJob, args: TemplateArgs) -> None:
+async def process_file_write_job(job: FileWriteJob, args: "TemplateArgs") -> None:
     """Process a single file write job."""
     txt = await read_file(job.source)
     if job.is_template:
@@ -55,7 +57,7 @@ async def process_file_write_job(job: FileWriteJob, args: TemplateArgs) -> None:
     await write_file(job.destination, txt)
 
 
-async def process_file_write_jobs(*jobs: FileWriteJob, args: TemplateArgs) -> None:
+async def process_file_write_jobs(*jobs: FileWriteJob, args: "TemplateArgs") -> None:
     """Process multiple file write jobs."""
     await asyncio.gather(
         *(asyncio.create_task(process_file_write_job(job, args)) for job in jobs)
