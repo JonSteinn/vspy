@@ -3,6 +3,7 @@ branch = True
 omit =
     tests/*
     vspy/main.py
+    vspy/core/type_hints.py
 
 [report]
 # Regexes for lines to exclude from consideration

@@ -47,13 +47,13 @@ def is_empty_folder(path: str) -> bool:
     if not os.path.isdir(path):
         return False
     with os.scandir(path) as iterator:
-        return any(iterator)
+        return not any(iterator)
 
 
 def clean_dir(path: pathlib.Path) -> None:
     """Remove all children of a given directory."""
     for name in path.iterdir():
-        if name.is_file():
-            name.unlink()
-        elif name.is_dir():
+        if name.is_dir():
             shutil.rmtree(name.as_posix())
+        else:
+            name.unlink()

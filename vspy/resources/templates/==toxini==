@@ -13,9 +13,7 @@ basepython =
 {%- for py_version in py_versions %}
     py{{"".join(py_version.split("."))}}: python{{py_version}}
 {%- endfor %}
-deps =
-    pytest=={{dependencies['pytest']}}
-    pytest-timeout=={{dependencies['pytest-timeout']}}
+deps = -rrequirements-dev.txt
 commands = pytest
 
 [pytest]
@@ -27,30 +25,24 @@ markers = slow: marks tests as slow (deselect with '-m "not slow"')
 description = run flake8 (linter)
 basepython = {[default]basepython}
 skip_install = True
-deps =
-    flake8=={{dependencies['pytest']}}
-    flake8-isort=={{dependencies['flake8-isort']}}
-    flake8-bugbear=={{dependencies['flake8-bugbear']}}
+deps = -rrequirements-dev.txt
 commands =
     flake8 --isort-show-traceback {{name}}
 
 [testenv:pylint]
 description = run pylint (static code analysis)
 basepython = {[default]basepython}
-deps =
-    pylint=={{dependencies['pylint']}}
+deps = -rrequirements-dev.txt
 commands = pylint {{name}}
 
 [testenv:mypy]
 description = run mypy (static type checker)
 basepython = {[default]basepython}
-deps =
-    mypy=={{dependencies['mypy']}}
+deps = -rrequirements-dev.txt
 commands = mypy
 
 [testenv:black]
 description = check that comply with autoformating
 basepython = {[default]basepython}
-deps =
-    black=={{dependencies['black']}}
+deps = -rrequirements-dev.txt
 commands = black --check --diff .
