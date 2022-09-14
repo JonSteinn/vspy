@@ -1,7 +1,7 @@
 import pathlib
 import platform
 from asyncio.proactor_events import _ProactorBasePipeTransport
-from tempfile import TemporaryDirectory, TemporaryFile
+from tempfile import TemporaryDirectory
 
 import pytest
 
@@ -16,10 +16,11 @@ from vspy.core.utils import (
 def test_is_empty_folder_and_clean_dir():
     with TemporaryDirectory() as tmpdir:
         assert is_empty_folder(tmpdir)
-        file = TemporaryFile("r", dir=tmpdir)
+        tmp = pathlib.Path(tmpdir)
+        file = tmp.joinpath("stuff.txt")
+        file.touch()
         assert not is_empty_folder(str(file))
         assert not is_empty_folder(tmpdir)
-        tmp = pathlib.Path(tmpdir)
         tmp.joinpath("subdir").mkdir()
         tmp.joinpath("subdir", "subdir_file").touch()
         assert not is_empty_folder(tmpdir)
