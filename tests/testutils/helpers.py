@@ -1,8 +1,7 @@
 import pathlib
-from tempfile import TemporaryFile
-from typing import Dict, Tuple
-
-from vspy.core.utils import is_windows
+import uuid
+from tempfile import TemporaryDirectory
+from typing import Dict, List, Tuple
 
 
 def get_pypi_url_and_res(
@@ -11,20 +10,20 @@ def get_pypi_url_and_res(
     return f"https://pypi.org/pypi/{package}/json", {"info": {"version": version}}
 
 
-def _temp_file():
-    if is_windows():
-        return TemporaryFile(delete=False)
-    return TemporaryFile()
+class TempFile(TemporaryDirectory):
+    def __init__(self, number_of_files: int) -> None:
+        super().__init__()
+        self._number_of_files = number_of_files
 
-
-class TempFileCtx:
-    def __init__(self) -> None:
-        file = _temp_file()
-        file.close()
-        self._path = pathlib.Path(file.name)
-
-    def __enter__(self) -> pathlib.Path:
-        return self._path
+    def __enter__(self) -> Tuple[str, List[pathlib.Path]]:
+        dir_name = super().__enter__()
+        dir_path = pathlib.Path(dir_name)
+        files = [
+            dir_path.joinpath(str(uuid.uuid4())) for _ in range(self._number_of_files)
+        ]
+        for file in files:
+            file.touch()
+        return (dir_name, files)
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        self._path.unlink()
+        super().__exit__(exc_type, exc_value, exc_traceback)
