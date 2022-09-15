@@ -13,8 +13,6 @@ class Project:
     """The project creation class."""
 
     def __init__(self, args: Arguments) -> None:
-        self._versions: List[str] = []
-        self._dependencies: Dict[str, str] = {}
         self._args: "TemplateArgs" = self._args_from_input(args)
         self._target_root = pathlib.Path(args.target)
 
@@ -26,9 +24,7 @@ class Project:
         """Get versions for dev dependencies and python interpreters."""
         dev_packages, py_versions = await fetch_all_requests_data(dev_dependencies)
         py_versions.sort(key=Project._version_comparator)
-        self._versions.extend(py_versions)
         self._args["py_versions"] = py_versions
-        self._dependencies.update(dev_packages)
         self._args["dependencies"] = dev_packages
 
     def _args_from_input(

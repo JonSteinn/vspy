@@ -1,7 +1,11 @@
+import asyncio
 import pathlib
 import uuid
+from random import randint
 from tempfile import TemporaryDirectory
 from typing import Dict, List, Tuple
+
+from vspy.core.file_io import path_from_root, read_file
 
 
 def get_pypi_url_and_res(
@@ -27,3 +31,19 @@ class TempFile(TemporaryDirectory):
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
         super().__exit__(exc_type, exc_value, exc_traceback)
+
+
+def vers_gen():
+    version = [0, 0, 1]
+    while True:
+        version[randint(0, 2)] += randint(1, 5)
+        yield ".".join(map(str, version))
+
+
+def static_file(file_name: str) -> pathlib.Path:
+    return path_from_root("vspy", "resources", "static", file_name)
+
+
+async def compare_against_static(path: pathlib.Path, static_name: str) -> bool:
+    a, b = await asyncio.gather(read_file(path), read_file(static_file(static_name)))
+    return a == b

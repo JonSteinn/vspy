@@ -19,8 +19,9 @@ if TYPE_CHECKING:
 class App:
     """The runnable unit of the package."""
 
-    def __init__(self, args: Arguments) -> None:
+    def __init__(self, args: Arguments, config_path: pathlib.Path) -> None:
         """Initialize the application."""
+        self._cfg_path = config_path
         self._project = Project(args)
         self._args = args
         self._target = pathlib.Path(args.target)
@@ -32,7 +33,7 @@ class App:
         await self._project.create_project(jobs)
 
     async def _get_config_data(self) -> "ConfigData":
-        data = await read_json_file(path_from_root("vspy", "resources", "data.json"))
+        data = await read_json_file(self._cfg_path)
         dev: List[str] = data["dev-dependencies"]
         jobs = await self._proces_file_write_jobs(data["jobs"])
         return dev, jobs

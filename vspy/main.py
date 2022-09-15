@@ -2,6 +2,7 @@ import asyncio
 
 from vspy.core import App
 from vspy.core.args import Arguments
+from vspy.core.file_io import path_from_root
 from vspy.core.utils import is_empty_folder, is_windows, silence_event_loop_closed
 
 
@@ -13,7 +14,7 @@ def main() -> None:
         return
     if is_windows():
         silence_event_loop_closed()
-    app = App(args)
+    app = App(args, path_from_root("vspy", "resources", "data.json"))
     try:
         asyncio.run(app.start())
     except KeyboardInterrupt:
