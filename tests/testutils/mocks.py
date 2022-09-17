@@ -1,6 +1,6 @@
 import sys
 from io import StringIO
-from typing import Iterable
+from typing import Dict, Iterable, List
 
 from vspy.core.args import Arguments
 
@@ -65,6 +65,8 @@ class MockArguments(Arguments):
         author: str = "",
         email: str = "",
         keywords: str = "",
+        dev_packages: Dict[str, str] = {},
+        py_versions: List[str] = [],
     ) -> None:
         self._debug = debug
         self._target = target
@@ -74,6 +76,8 @@ class MockArguments(Arguments):
         self._author = author
         self._email = email
         self._keywords = keywords
+        self.dev_packages = dev_packages
+        self.py_versions = py_versions
 
     @property
     def debug(self) -> bool:

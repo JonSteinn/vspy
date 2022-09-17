@@ -5,7 +5,10 @@ from random import randint
 from tempfile import TemporaryDirectory
 from typing import Dict, List, Tuple
 
-from vspy.core.file_io import path_from_root, read_file
+from pytest_httpx import HTTPXMock
+
+from tests.testutils.mocks import py_partial_page
+from vspy.core.file_io import path_from_root, read_file, read_json_file
 
 
 def get_pypi_url_and_res(
@@ -44,6 +47,21 @@ def static_file(file_name: str) -> pathlib.Path:
     return path_from_root("vspy", "resources", "static", file_name)
 
 
-async def compare_against_static(path: pathlib.Path, static_name: str) -> bool:
+async def compare_against_static(
+    path: pathlib.Path, static_name: str
+) -> Tuple[str, str]:
     a, b = await asyncio.gather(read_file(path), read_file(static_file(static_name)))
-    return a == b
+    return a, b
+
+
+async def mock_urls(httpx_mock: HTTPXMock) -> Dict[str, str]:
+    httpx_mock.add_response(
+        url="https://www.python.org/downloads/", content=py_partial_page
+    )
+    cfg_file = path_from_root("vspy", "resources", "data.json")
+    cfg = await read_json_file(cfg_file)
+    version_map = dict(zip(cfg["dev-dependencies"], vers_gen()))
+    data = [get_pypi_url_and_res(*package) for package in version_map.items()]
+    for url, res in data:
+        httpx_mock.add_response(url=url, json=res)
+    return version_map
