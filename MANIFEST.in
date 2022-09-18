@@ -1,2 +1,3 @@
 graft vspy/resources
 include vspy/py.typed
+include requirements.txt

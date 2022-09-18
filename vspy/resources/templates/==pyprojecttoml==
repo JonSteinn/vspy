@@ -1,5 +1,5 @@
 [tool.black]
-target-version = ['py37']
+target-version = ['py{{"".join(py_versions[-1].split("."))}}']
 include = '\.pyi?$'
 exclude = '''
 (
@@ -15,7 +15,5 @@ exclude = '''
     | build
     | dist
   )/
-  | foo.py           # also separately exclude a file named foo.py in
-                     # the root of the project
 )
 '''

@@ -1,0 +1,49 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '{{py_versions[-1]}}'
+            toxenv: flake8
+            os: ubuntu-latest
+          - python: '{{py_versions[-1]}}'
+            toxenv: mypy
+            os: ubuntu-latest
+          - python: '{{py_versions[-1]}}'
+            toxenv: pylint
+            os: ubuntu-latest
+          - python: '{{py_versions[-1]}}'
+            toxenv: black
+            os: ubuntu-latest
+          - python: '{{py_versions[-1]}}'
+            toxenv: py{{"".join(py_versions[-1].split("."))}}
+            os: macos-latest
+          - python: '{{py_versions[-1]}}'
+            toxenv: py{{"".join(py_versions[-1].split("."))}}
+            os: windows-latest
+        {%- for py_version in py_versions %}
+          - python: '{{py_version}}'
+            toxenv: py{{"".join(py_version.split("."))}}
+            os: ubuntu-latest
+        {%- endfor %}
+
+    runs-on: {{ '${{ matrix.os }}' }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: {{ '${{ matrix.python }}' }}
+      - name: install dependencies
+        run: python -m pip install --upgrade pip tox
+      - name: run
+        env:
+          TOXENV: {{ '${{ matrix.toxenv }}' }}
+        run: tox
+      - name: setup
+        run: python setup.py install

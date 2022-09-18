@@ -4,7 +4,7 @@ import sys
 
 from setuptools import find_packages, setup
 
-_MIN_PY_VERSION = (3, 7)
+_MIN_PY_VERSION = ({{py_versions[0][0]}}, {{py_versions[0][2:]}})
 
 
 def read(fname):
@@ -12,7 +12,7 @@ def read(fname):
 
 
 def get_version():
-    with open("vspy/__init__.py", encoding="utf-8") as init_file:
+    with open("{{name}}/__init__.py", encoding="utf-8") as init_file:
         for line in init_file.readlines():
             if line.startswith("__version__"):
                 return line.split(" = ")[1].rstrip()[1:-1]
@@ -29,36 +29,35 @@ def check_min_py_version():
 def main():
     check_min_py_version()
     setup(
-        name="vspy",
+        name="{{name}}",
         version=get_version(),
-        author="Jon Steinn Eliasson",
-        author_email="jonsteinn@gmail.com",
-        description="Create a vs code python project template",
+        author="{{author}}",
+        author_email="{{email}}",
+        description="{{description}}",
         license="GPLv3",
-        keywords=("vscode python project-template"),
-        url="https://github.com/JonSteinn/vspy",
+        keywords="{{keywords}}",
+        url="{{repository}}",
         project_urls={
-            "Source": "https://github.com/JonSteinn/vspy",
-            "Tracker": "https://github.com/JonSteinn/vspy/issues",
+            "Source": "{{repository}}",
+            "Tracker": "{{repository}}/issues",
         },
         packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
-        package_data={"vspy": ["py.typed"]},
+        package_data={"{{name}}": ["py.typed"]},
         include_package_data=True,
         long_description_content_type="text/x-rst",
         long_description=read("README.rst"),
         install_requires=read("requirements.txt").splitlines(),
-        python_requires=">=3.7",
+        python_requires=">={{py_versions[0]}}",
         classifiers=[
             "Programming Language :: Python :: 3",
-            "Programming Language :: Python :: 3.7",
-            "Programming Language :: Python :: 3.8",
-            "Programming Language :: Python :: 3.9",
-            "Programming Language :: Python :: 3.10",
+            {%- for py_version in py_versions %}
+            "Programming Language :: Python :: {{py_version}}",
+            {%- endfor %}
             "Programming Language :: Python :: Implementation :: CPython",
             "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
             "Development Status :: 3 - Alpha",
         ],
-        entry_points={"console_scripts": ["vspy=vspy.main:main"]},
+        entry_points={"console_scripts": ["{{name}}={{name}}.main:main"]},
     )
 
 

@@ -1,4 +1,5 @@
 [mypy]
+strict = True
 pretty = True
 check_untyped_defs = True
 disallow_untyped_defs = True
@@ -11,10 +12,7 @@ warn_unused_configs = True
 no_implicit_optional = True
 show_error_codes = True
 show_traceback = True
-files = vspy/**/*.py
+files = {{name}}/**/*.py
 
-[mypy-tests.*]
+[{{name}}-tests.*]
 ignore_errors = True
-
-[mypy-bs4.*]
-ignore_missing_imports = True
