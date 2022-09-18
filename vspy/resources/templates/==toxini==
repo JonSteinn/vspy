@@ -1,25 +1,24 @@
 [tox]
-minversion = 3.26.0
+minversion = {{dependencies['tox']}}
 envlist =
     flake8, mypy, pylint, black
-    py{37,38,39,310},
+    py{{'{'}}{{",".join(py_versions).replace(".","")}}{{'}'}},
 
 [default]
-basepython=python3.10
+basepython=python{{py_versions[-1]}}
 
 [testenv]
 description = run test
 basepython =
-    py37: python3.7
-    py38: python3.8
-    py39: python3.9
-    py310: python3.10
+{%- for py_version in py_versions %}
+    py{{"".join(py_version.split("."))}}: python{{py_version}}
+{%- endfor %}
 deps = -rrequirements-dev.txt
 commands = pytest
 
 [pytest]
 addopts = --doctest-modules --doctest-ignore-import-errors
-testpaths = tests vspy README.rst
+testpaths = tests {{name}} README.rst
 markers = slow: marks tests as slow (deselect with '-m "not slow"')
 
 [testenv:flake8]
@@ -28,13 +27,13 @@ basepython = {[default]basepython}
 skip_install = True
 deps = -rrequirements-dev.txt
 commands =
-    flake8 --isort-show-traceback vspy
+    flake8 --isort-show-traceback {{name}}
 
 [testenv:pylint]
 description = run pylint (static code analysis)
 basepython = {[default]basepython}
 deps = -rrequirements-dev.txt
-commands = pylint vspy
+commands = pylint {{name}}
 
 [testenv:mypy]
 description = run mypy (static type checker)

@@ -1,0 +1,177 @@
+{
+  "dev-dependencies": [
+    "pytest",
+    "pytest-timeout",
+    "pylint",
+    "flake8",
+    "flake8-isort",
+    "flake8-bugbear",
+    "mypy",
+    "black",
+    "tox"
+  ],
+  "jobs": [
+    {
+      "src": "vspy/resources/static/==editor_config==",
+      "dst": ".editorconfig",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==isort_cfg==",
+      "dst": ".isort.cfg",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==pre_commit==",
+      "dst": ".pre-commit-config.yaml",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==empty==",
+      "dst": "requirements.txt",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==readme==",
+      "dst": "README.rst",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==changelog==",
+      "dst": "CHANGELOG.md",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==coveragerc==",
+      "dst": ".coveragerc",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==flake8==",
+      "dst": ".flake8",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==gitignore==",
+      "dst": ".gitignore",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==gitattributes==",
+      "dst": ".gitattribute",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==isort==",
+      "dst": ".isort.cfg",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==pylintrc==",
+      "dst": ".pylintrc",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==license==",
+      "dst": "LICENSE",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==mypy==",
+      "dst": "mypy.ini",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==pyprojecttoml==",
+      "dst": "pyproject.toml",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==devdep==",
+      "dst": "requirements-dev.txt",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==setuppy==",
+      "dst": "setup.py",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==toxini==",
+      "dst": "tox.ini",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==manifest==",
+      "dst": "MANIFEST.in",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==empty==",
+      "dst": "tests/__init__.py",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==test==",
+      "dst": "tests/test_placeholder.py",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==init==",
+      "dst": "{{name}}/__init__.py",
+      "is_template": false,
+      "path_is_template": true
+    },
+    {
+      "src": "vspy/resources/static/==main==",
+      "dst": "{{name}}/main.py",
+      "is_template": false,
+      "path_is_template": true
+    },
+    {
+      "src": "vspy/resources/templates/==test_and_lint==",
+      "dst": ".github/test_and_lint.yml",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/templates/==deploy==",
+      "dst": ".github/deploy.yml",
+      "is_template": true,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==vs_config==",
+      "dst": ".vscode/settings.json",
+      "is_template": false,
+      "path_is_template": false
+    },
+    {
+      "src": "vspy/resources/static/==empty==",
+      "dst": "{{name}}/py.typed",
+      "is_template": false,
+      "path_is_template": true
+    }
+  ]
+}

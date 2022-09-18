@@ -9,32 +9,35 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - python: 3.8
+          - python: '3.10'
             toxenv: flake8
             os: ubuntu-latest
-          - python: 3.8
+          - python: '3.10'
             toxenv: mypy
             os: ubuntu-latest
-          - python: 3.8
+          - python: '3.10'
             toxenv: pylint
             os: ubuntu-latest
-          - python: 3.8
+          - python: '3.10'
             toxenv: black
             os: ubuntu-latest
-          - python: 3.7
+          - python: '3.7'
             toxenv: py37
             os: ubuntu-latest
-          - python: 3.8
+          - python: '3.8'
             toxenv: py38
             os: ubuntu-latest
-          - python: 3.9-dev
+          - python: '3.9'
             toxenv: py39
             os: ubuntu-latest
-          - python: 3.8
-            toxenv: py38
+          - python: '3.10'
+            toxenv: py310
+            os: ubuntu-latest
+          - python: '3.10'
+            toxenv: py310
             os: macos-latest
-          - python: 3.8
-            toxenv: py38
+          - python: '3.10'
+            toxenv: py310
             os: windows-latest
 
     runs-on: ${{ matrix.os }}
@@ -42,7 +45,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: ${{  matrix.python }}
+          python-version: ${{ matrix.python }}
       - name: install dependencies
         run: python -m pip install --upgrade pip tox
       - name: run
