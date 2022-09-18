@@ -9,3 +9,4 @@ Rewrite.
 - Async
 - Template engine
 - Improve setup
+- Dependencies added: httpx, aiofiles, beautifulsoup4, jinja2
